@@ -1,9 +1,7 @@
-// TODO type
-export const readNfc = async (onRead: (message: any, serialNumber: any) => void, onError: () => void) => {
+export const readNfc = async (onRead: (message: NDEFMessage, serialNumber: any) => void, onError: () => void) => {
   try {
     const ndef = new NDEFReader();
     await ndef.scan();
-    alert("> Scan started");
 
     ndef.addEventListener("readingerror", () => {
       onError();
@@ -18,4 +16,18 @@ export const readNfc = async (onRead: (message: any, serialNumber: any) => void,
   } catch (error) {
     onError();
   }
+};
+
+export const write = async (message: string, onDone: () => void, onError: () => void) => {
+  try {
+    const ndef = new NDEFReader();
+    await ndef.write(message);
+    onDone();
+  } catch (error) {
+    onError();
+  }
+};
+
+export const decodeNftRecord = (record?: NDEFRecord) => {
+  return record ? new TextDecoder(record.encoding).decode(record.data) : "";
 };

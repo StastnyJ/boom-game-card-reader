@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { readNfc } from "../Utils/nft";
-// import Nfc from "nfc-react-web";
+import { decodeNftRecord, readNfc } from "../Utils/nft";
 
 export default function Read() {
   const nav = useNavigate();
@@ -10,8 +9,7 @@ export default function Read() {
     readNfc(
       (data, sn) => {
         alert(`SN: ${sn}, dataLength: ${data.records.length}`);
-        console.log(data);
-        alert(`Rec0: ${data.records[0]}`);
+        alert(`Rec0: ${decodeNftRecord(data.records[0])}`);
       },
       () => alert("error")
     );
