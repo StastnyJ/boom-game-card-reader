@@ -15,7 +15,7 @@ export default function ShowBalance() {
       readNfc(
         (message) => {
           const msgText = decodeNfcRecord(message.records[0]);
-          if (msgText.indexOf(";") < 0) alert("Malformed card data");
+          if (msgText.indexOf(";") < 0) alert("Malformed card data: " + msgText);
           else {
             // TODO layout success
             setScanned(true);
