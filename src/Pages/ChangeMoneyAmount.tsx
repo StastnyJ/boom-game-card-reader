@@ -96,7 +96,7 @@ export default function ChangeMoneyAmount({ amount, onClose }: IProps) {
             </Avatar>
             <br />
             <br />
-            <Typography variant="h2" align="center">
+            <Typography variant="h4" align="center">
               Balance changed successfully
             </Typography>
             <br />
@@ -104,11 +104,6 @@ export default function ChangeMoneyAmount({ amount, onClose }: IProps) {
             <br />
             <br />
             <Typography variant="h1">{balance}</Typography>
-            <br />
-            <br />
-            <Typography variant="h4">{name}</Typography>
-            <br />
-            <br />
             <br />
             <br />
             <br />
@@ -126,7 +121,7 @@ export default function ChangeMoneyAmount({ amount, onClose }: IProps) {
             </Avatar>
             <br />
             <br />
-            <Typography variant="h2" align="center">
+            <Typography variant="h4" align="center">
               Error while changing card balance
             </Typography>
             <br />
