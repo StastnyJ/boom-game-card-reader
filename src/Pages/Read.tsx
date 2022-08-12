@@ -1,30 +1,20 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { readNfc } from "../Utils/nft";
 // import Nfc from "nfc-react-web";
 
 export default function Read() {
   const nav = useNavigate();
 
   const read = async () => {
-    alert("User clicked scan button");
-
-    try {
-      // @ts-ignore
-      const ndef = new NDEFReader();
-      await ndef.scan();
-      alert("> Scan started");
-
-      ndef.addEventListener("readingerror", () => {
-        alert("Argh! Cannot read data from the NFC tag. Try another one?");
-      });
-
-      ndef.addEventListener("reading", ({ message, serialNumber }: any) => {
-        alert(`> Serial Number: ${serialNumber}`);
-        alert(`> Records: (${message.records.length})`);
-      });
-    } catch (error) {
-      alert("Argh! " + error);
-    }
+    readNfc(
+      (data, sn) => {
+        alert(`SN: ${sn}, dataLength: ${data.records.length}`);
+        console.log(data);
+        alert(`Rec0: ${data.records[0]}`);
+      },
+      () => alert("error")
+    );
   };
 
   return (
