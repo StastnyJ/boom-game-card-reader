@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { writeNfc } from "../Utils/nfc";
-import { Button, Container, TextField, Typography } from "@mui/material";
+import { Avatar, Button, Container, TextField, Typography } from "@mui/material";
+import { Sensors } from "@mui/icons-material";
+import { blue } from "@mui/material/colors";
 
 export default function InitCard() {
   const [scanning, setScanning] = useState(false);
@@ -30,6 +32,11 @@ export default function InitCard() {
       {scanning ? (
         <>
           <div style={{ height: "100vh", flexDirection: "column", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Avatar sx={{ m: 1, bgcolor: blue[500], width: 156, height: 156 }}>
+              <Sensors style={{ fontSize: "5rem" }} />
+            </Avatar>
+            <br />
+            <br />
             <Typography variant="h6">Hold the card near the reader</Typography>
           </div>
           <Button

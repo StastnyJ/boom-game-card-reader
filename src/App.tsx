@@ -17,7 +17,8 @@ function App() {
           <Route path="/write" element={<Write />} />
           <Route path="/showBalance" element={<ShowBalance />} />
           <Route path="/init" element={<InitCard />} />
-          <Route path="/addMoney" element={<AddMoney />} />
+          <Route path="/addMoney" element={<AddMoney mode="add" />} />
+          <Route path="/subsMoney" element={<AddMoney mode="subs" />} />
         </Routes>
       </BrowserRouter>
     </>

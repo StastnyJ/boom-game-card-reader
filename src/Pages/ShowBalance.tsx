@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { decodeNfcRecord, readNfc } from "../Utils/nfc";
-import { Button, Container, Typography } from "@mui/material";
+import { Avatar, Button, Container, Typography } from "@mui/material";
+import { Sensors } from "@mui/icons-material";
+import { blue } from "@mui/material/colors";
 
 export default function ShowBalance() {
   const [scanned, setScanned] = useState(false);
@@ -54,6 +56,11 @@ export default function ShowBalance() {
         </>
       ) : (
         <>
+          <Avatar sx={{ m: 1, bgcolor: blue[500], width: 156, height: 156 }}>
+            <Sensors style={{ fontSize: "5rem" }} />
+          </Avatar>
+          <br />
+          <br />
           <div style={{ height: "100vh", flexDirection: "column", display: "flex", justifyContent: "center", alignItems: "center" }}>
             <Typography variant="h6">Hold the card near the reader</Typography>
           </div>

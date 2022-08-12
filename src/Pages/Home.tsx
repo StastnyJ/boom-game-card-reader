@@ -24,6 +24,10 @@ export default function Home() {
       <div style={{ backgroundColor: "red", width: "100%", height: 64 }} onClick={() => nav("/addMoney")}>
         Add money
       </div>
+      <br />
+      <div style={{ backgroundColor: "red", width: "100%", height: 64 }} onClick={() => nav("/subsMoney")}>
+        Subs money
+      </div>
     </>
   );
 }
