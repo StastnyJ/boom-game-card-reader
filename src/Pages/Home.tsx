@@ -20,6 +20,10 @@ export default function Home() {
       <div style={{ backgroundColor: "red", width: "100%", height: 64 }} onClick={() => nav("/init")}>
         Init card
       </div>
+      <br />
+      <div style={{ backgroundColor: "red", width: "100%", height: 64 }} onClick={() => nav("/addMoney")}>
+        Add money
+      </div>
     </>
   );
 }
