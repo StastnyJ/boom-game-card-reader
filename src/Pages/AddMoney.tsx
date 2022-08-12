@@ -15,7 +15,7 @@ export default function AddMoney({ mode }: IProps) {
 
   return scanning ? (
     <ChangeMoneyAmount
-      amount={mode === "add" ? amount : -amount}
+      amount={mode === "add" ? amount : -1 * amount}
       onClose={() => {
         setScanning(false);
         setAmount(0);

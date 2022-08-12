@@ -61,12 +61,12 @@ export default function ChangeMoneyAmount({ amount, onClose }: IProps) {
     <Container maxWidth="sm">
       {status === "init" ? (
         <>
-          <Avatar sx={{ m: 1, bgcolor: blue[500], width: 156, height: 156 }}>
-            <Sensors style={{ fontSize: "5rem" }} />
-          </Avatar>
-          <br />
-          <br />
           <div style={{ height: "100vh", flexDirection: "column", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Avatar sx={{ m: 1, bgcolor: blue[500], width: 156, height: 156 }}>
+              <Sensors style={{ fontSize: "5rem" }} />
+            </Avatar>
+            <br />
+            <br />
             <Typography variant="h6">Hold the card near the reader</Typography>
           </div>
           <Button style={{ position: "absolute", bottom: 16 }} onClick={onClose}>
@@ -75,12 +75,12 @@ export default function ChangeMoneyAmount({ amount, onClose }: IProps) {
         </>
       ) : status === "scanned" ? (
         <>
-          <Avatar sx={{ m: 1, bgcolor: blue[500], width: 156, height: 156 }}>
-            <Sensors style={{ fontSize: "5rem" }} />
-          </Avatar>
-          <br />
-          <br />
           <div style={{ height: "100vh", flexDirection: "column", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Avatar sx={{ m: 1, bgcolor: blue[500], width: 156, height: 156 }}>
+              <Sensors style={{ fontSize: "5rem" }} />
+            </Avatar>
+            <br />
+            <br />
             <Typography variant="h6">Hold the card near the reader</Typography>
             <Typography>Current balance scanned, updating...</Typography>
           </div>
