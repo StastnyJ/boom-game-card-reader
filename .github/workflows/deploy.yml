@@ -1,0 +1,59 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install Packages
+        run: npm install
+      - name: Build page
+        run: npm run build
+      - name: Clear old version
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: 22
+          KEY: ${{ secrets.SSHKEY }}
+          script: rm -r /var/www/html/bombCardReader/* || true
+      - name: Copy repository contents via scp
+        uses: appleboy/scp-action@master
+        env:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: 22
+          KEY: ${{ secrets.SSHKEY }}
+        with:
+          source: "./build/*"
+          target: "/var/www/html/bombCardReader"
+      - name: Move scripts to right location
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: 22
+          KEY: ${{ secrets.SSHKEY }}
+          script: mv /var/www/html/bombCardReader/build/* /var/www/html/bombCardReader/ || true
+      - name: Remove build folder
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: 22
+          KEY: ${{ secrets.SSHKEY }}
+          script: rm -r /var/www/html/bombCardReader/build || true
