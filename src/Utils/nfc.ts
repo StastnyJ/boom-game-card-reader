@@ -3,10 +3,6 @@ export const readNfc = async (onRead: (message: NDEFMessage, serialNumber: any) 
     const ndef = new NDEFReader();
     await ndef.scan();
 
-    ndef.addEventListener("readingerror", () => {
-      onError();
-    });
-
     const onScan = ({ message, serialNumber }: any) => {
       onRead(message, serialNumber);
       ndef.removeEventListener("reading", onScan);
@@ -18,7 +14,7 @@ export const readNfc = async (onRead: (message: NDEFMessage, serialNumber: any) 
   }
 };
 
-export const write = async (message: string, onDone: () => void, onError: () => void) => {
+export const writeNfc = async (message: string, onDone: () => void, onError: () => void) => {
   try {
     const ndef = new NDEFReader();
     await ndef.write(message);
@@ -28,6 +24,6 @@ export const write = async (message: string, onDone: () => void, onError: () => 
   }
 };
 
-export const decodeNftRecord = (record?: NDEFRecord) => {
+export const decodeNfcRecord = (record?: NDEFRecord) => {
   return record ? new TextDecoder(record.encoding).decode(record.data) : "";
 };
