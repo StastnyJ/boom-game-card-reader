@@ -27,7 +27,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          USERNAME: ${{ secrets.USERNAME }}
+          USERNAME: root
           PORT: 22
           KEY: ${{ secrets.SSHKEY }}
           script: rm -r /var/www/html/boomGameCardReader/* || true
